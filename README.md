@@ -7,4 +7,4 @@ Below are the links to my notes. Some of the files might not have complete infor
 
 #### [iOS 13 Features](https://github.com/SarinSwift/iOSResearch/blob/master/ios13Info.md)
 
-#### [Design Patterns]()
+#### [Design Patterns](https://github.com/SarinSwift/iOSResearch/blob/master/designPatterns.md)
