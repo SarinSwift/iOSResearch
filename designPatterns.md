@@ -85,3 +85,30 @@ You can also use several wrappers simultaneously and get the combined behavior f
 **Example of use case**  
 If you want to ***implement data management*** in your iOS application. You can create 2 decorators: ***EncryptionDecorator*** for encrypting and decrypting data, and ***EncodingDecorator*** for encoding and decoding!  
 [Check out the code!]()
+
+
+
+#### Facade
+It's a Structural design pattern that provides a simple interface to a library, framework, or complex system of classes.  
+The  facade provides a simple interface for working with complex subsystems containing many classes. It has limited functionality that you can extend by using a complex subsystem directly. The simplified interface has features that the client needs while hiding all others.   
+
+**When to apply the facade pattern:**  
+• when you want to provide a simplified/unified interface to a complex subsystem.  
+• when you want to decompose a subsystem into separate layers.
+
+**Example of use case**  
+Say we want to create an app that supports audio recording and playback and you need to create the functionality for that. You can use facade pattern to ***hide the implementation*** of services responsible for the file system(FileService), audio sessions(AudioSessionService), audio recording(RecordingService), and audio playback(PlayerService). This easily provides a simplified interface for this complex system of classes!  
+[Check out the code!]()
+
+
+#### Template Method
+It's a Behavioral design pattern which ***defines*** a skeleton for an algorithm, as well as ***delegates responsibility*** for some steps to subclass. It allows subclasses to redefine certain steps of its algorithm without changing its overall structure!  
+It splits an algorithm into a sequence of steps, describes the steps in separate methods, and lastly, calls them consecutively with the help of a single template method.
+
+**When to apply the template method pattern:**  
+• when subclasses need to extend a basic algorithm without changing their structure
+• when you have several classes that are responsible for the quite similar actions. Meaning that you'll need to change your class if the other class has been modified.
+
+**Example of use case**  
+Say your application has the ability to take pictures and save them. This means that your application will need to ask permission to use the camera and image gallery. To do this, we can create a ***PermissionService*** base class that has a specific algorithm. Now since we have 2 functionalities we want to create, we can create 2 subclasses: ***CameraPermissionService***, and ***PhotoPermissionService***. These subclasses will redefine certain steps of the algorithm while keeping other steps the same.
+[Check out the code!]()
