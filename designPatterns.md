@@ -123,4 +123,7 @@ But there are some side effects that you will need to account for one of which i
 However, doing it this way, by declaring it global, causes a downside where you can't declare you're (singleton) class private meaning that multiple instances of the class *can* be instantiated(NOT the main goal of singletons). And, it causes cluttering of global namespace.  
 • A better implementation is using ***static property*** and ***private initializer***. Meaning that we're accessing the singleton(a static let property) declared inside the class. *Note: Static properties are also initialized lazily!*.   
 • Another way you can go about this is similar to the style above, but we're instantiating the singleton object in a closure. Thus allows for more complex initialization and configuration of the singleton object.  
-Check out the code of singleton creation on this [link]()!
+Check out the code of singleton creation on this [link](https://github.com/SarinSwift/iOSResearch/blob/master/singletons.playground/Contents.swift)!
+
+Using singletons in your project doesn't mean you have to access them from anywhere in your project. You can use ***dependency injection*** to pass the singleton object to the objects that need it!  
+By adopting dependency injection to pass singletons around, the interface of your class describes its dependancies. Making it clear and transparent showing which objects the class needs to perform its duties.
