@@ -112,3 +112,15 @@ It splits an algorithm into a sequence of steps, describes the steps in separate
 **Example of use case**  
 Say your application has the ability to take pictures and save them. This means that your application will need to ask permission to use the camera and image gallery. To do this, we can create a ***PermissionService*** base class that has a specific algorithm. Now since we have 2 functionalities we want to create, we can create 2 subclasses: ***CameraPermissionService***, and ***PhotoPermissionService***. These subclasses will redefine certain steps of the algorithm while keeping other steps the same.
 [Check out the code!]()
+
+
+#### Singleton
+Singletons limit the creation of a class to only 1 object. This is beneficial for when we only need 1 object to handle/coordinate actions across the system. Some examples that we have likely used before are `URLSession.shared`, `FileManager.default`, `UserDefaults.standard`, etc.  
+But there are some side effects that you will need to account for one of which is global access. We must ensure that 1 and only 1 object ever gets created. This can be done by making the constructor `private` to the class that we intend to being the singleton. That way, only the members of the class can access the private constructor and no other can.  
+
+**Creating a singleton in Swift**  
+• There's a most straight forward way to create a singleton is by defining a global variable. Meaning that any object in the module has access to the singleton object. *Note: Global variables are initialized lazily!*.  
+However, doing it this way, by declaring it global, causes a downside where you can't declare you're (singleton) class private meaning that multiple instances of the class *can* be instantiated(NOT the main goal of singletons). And, it causes cluttering of global namespace.  
+• A better implementation is using ***static property*** and ***private initializer***. Meaning that we're accessing the singleton(a static let property) declared inside the class. *Note: Static properties are also initialized lazily!*.   
+• Another way you can go about this is similar to the style above, but we're instantiating the singleton object in a closure. Thus allows for more complex initialization and configuration of the singleton object.  
+Check out the code of singleton creation on this [link]()!
