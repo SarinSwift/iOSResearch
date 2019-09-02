@@ -1,4 +1,5 @@
 ## Design Patterns
+References: rubygarage.org    
 Design patterns are used to represent many best practices adapted by object oriented systems. It describes the problem, the solution, when to apply the solution, and its consequences.     
 There are ***3 main types of software design patterns***
 1. Creational
@@ -50,8 +51,8 @@ The builder design pattern separates the construction of an object from its own 
 To create an object: You call ***builder methods*** which you wouldn't need to go through all the steps, but only those required to create your object that has specific configuration.
 
 **When to apply the builder pattern:**  
-• when a constructor has too many parameters and it gets hard to read and manage
-• when your code base needs to create different views of a specific object
+• when a constructor has too many parameters and it gets hard to read and manage  
+• when your code base needs to create different views of a specific object  
 • when you need to compose complex objects
 
 **Example of use case**  
@@ -63,9 +64,24 @@ Adapter is a structural design pattern that allows incompatible interfaces to wo
 The Adapter ***wraps the object***, concealing it completely from another object. An example would be wrapping an object that handles meters with an adapter that converts data(in our case the data from an object that handles meters) into feet.
 
 **When to apply the adapter pattern:**  
-When you need to use several existing subclasses but they’re mostly all different in functionality, and you can’t extend the superclass
-When you want to use third party class but the interface doesn’t match the rest of your application’s code.  
+• when you need to use several existing subclasses but they’re mostly all different in functionality, and you can’t extend the superclass  
+• when you want to use third party class but the interface doesn’t match the rest of your application’s code.  
 
 **Example of use case**  
-If you want to create an events sort of app, and implement a calendar. You should implement the ***EventKit framework*** from Apple and adapt the ***Event*** model from the framework, to work with models in your application! The adapter can wrap the model of the framework and make it compatible with the model in your application.
+If you want to create an events sort of app, and implement a calendar. You should implement the ***EventKit framework*** from Apple and adapt the ***Event*** model from the framework, to work with models in your application! The adapter can wrap the model of the framework and make it compatible with the model in your application.  
+[Check out the code!]()
+
+
+#### Decorator
+Decorator is a structural design pattern similar to the adapter design pattern. It allows you to dynamically attach new functionalities to an object by wrapping them in useful wrappers.   
+This design pattern is also actually called ***the wrapper***. It describes the core idea behind the design pattern which is — You place a target object inside another wrapper object that triggers the basic behavior from the target object, but then also adds its own behavior to the result.  
+Both of these objects will ***share the same interface*** so it doesn’t matter for the user of which object they interact with(either clean or wrapped).   
+You can also use several wrappers simultaneously and get the combined behavior from all of them!
+
+**When to apply the decorator pattern:**  
+• when you want to add responsibilities to objects dynamically and hide those objects from the code that uses them  
+• when you can not extend responsibilities of an object through inheritance.
+
+**Example of use case**  
+If you want to ***implement data management*** in your iOS application. You can create 2 decorators: ***EncryptionDecorator*** for encrypting and decrypting data, and ***EncodingDecorator*** for encoding and decoding!  
 [Check out the code!]()
