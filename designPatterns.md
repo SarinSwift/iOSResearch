@@ -1,5 +1,6 @@
 ## Design Patterns
-References: rubygarage.org    
+References: rubygarage.org   
+Design Patterns: Elements of Reusable object oriented software.  
 Design patterns are used to represent many best practices adapted by object oriented systems. It describes the problem, the solution, when to apply the solution, and its consequences.     
 There are ***3 main types of software design patterns***
 1. Creational
@@ -187,3 +188,22 @@ Mainly involving 3 component types: - The ***invoker*** to store and execute the
 • support undo. the commnand's exectute operation can store state for reversing effects in the command itself. But the command must have an ***unexecute*** operation to reverse the effects of a previous call to execute.  
 • supports logging changes. they can be reapplied in case of a system crash.  
 • supports high level operations which are common in information systems that support ***transactions***. Commands have a common interface making you invoke all transactions the same way, and, it's easy to extend the system with new transactions.
+
+
+
+#### Strategy
+Is a behavioral pattern that allows grouping related algorithms under an abstraction, allowing to switch out an algorithm/policy for another without modifying the client.  
+
+**When to apply the strategy pattern:**  
+• many different classes differ only in their behavior since strategy pattern allows you to configure a class with one of many behaviours.  
+• when you need different variabts of an alogorithm. Strategies can be used when variants are implemented as a class hierarchy of algorithms.  
+• when an algorithm uses data that clients shouldn't know about. You can use strategy to avoid exposing complex, algorithm specific data structures.   
+• another way to identify when to use this pattern is when your code contaisn many conditional statements.
+
+**Benefits and drawbacks**  
+• allows family of related algorithms. Inheritance can help factor out common functionality of the algorithm.  
+• is an alternative to subclassing. Encapsulating the algorithm in separate strategy classes lets you vary the algorithm independantly of its context - making it easier to switch, understand, and extend.  
+• strategy eliminates conditional statements. becasue when different bahaviors are lumped in to 1 class, it's hard to avoid using conditionals to select the right behaviour. Encapsulating the bahaviour in separate strategy classes eliminated these conditional statements.  
+• it provides different implementations of the same behavior.  
+• clients must understand the different strategies before implementing one. That means that you should use this pattern only when the variation in bahavior is relevant the the clients  
+• increased number of objects. Sometimes you can reduce this overhead by implementing strategies as stateless objects that contexts can share.
