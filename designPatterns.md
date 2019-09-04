@@ -174,3 +174,16 @@ Since a view controller lies in the responder chain, after all of it's managed s
 • adds flexibility to assigning responsibilities among objects. You can add or change responsibilities of handling a request by modifying the chain at runtime.  
 • there's no guarantee that the request will be handled(the request can fall off the end of the chain).  
 • a request can also go unhandled if the chain is not properly configured.
+
+
+#### Command
+We encapsulate the request as an object which includes all the information needed to perform an action or trigger an event at a later time. The information includes: a method name, the object that owns the method, and values for the method parameters.  
+The pattern allows you to model the concept of executing an action. It encapsulates information to perform an action into a command object. Th object can be stored and passed around like other objects. The key to this pattern is an ***abstract Command class***.  
+Mainly involving 3 component types: - The ***invoker*** to store and execute the class. - The command that encapsulates the action as an object. - The receiver which is the object acted upon by the command.
+
+**When to apply the command pattern:**  
+• commands are an objeect-oriented replacement for call backs. You can express parametrization in a procedural language with a ***callback*** function. Callback functions are registered somewhere to be called at a later point.  
+• they can *specify*, *queue*, and *execute* requests at different times. If the receiver of the request can be represented in an address space independent way, then you can ***transfer a command object*** for the request to a different process and full fill the request there!  
+• support undo. the commnand's exectute operation can store state for reversing effects in the command itself. But the command must have an ***unexecute*** operation to reverse the effects of a previous call to execute.  
+• supports logging changes. they can be reapplied in case of a system crash.  
+• supports high level operations which are common in information systems that support ***transactions***. Commands have a common interface making you invoke all transactions the same way, and, it's easy to extend the system with new transactions.
