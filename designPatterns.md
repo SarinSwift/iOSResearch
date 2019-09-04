@@ -127,3 +127,26 @@ Check out the code of singleton creation on this [link](https://github.com/Sarin
 
 Using singletons in your project doesn't mean you have to access them from anywhere in your project. You can use ***dependency injection*** to pass the singleton object to the objects that need it!  
 By adopting dependency injection to pass singletons around, the interface of your class describes its dependancies. Making it clear and transparent showing which objects the class needs to perform its duties.
+
+
+#### Factory Method
+Objects are created by calling a factory method instead of calling a constructor. This design pattern solves the problem of creating product objects without specifying their concrete classes. Factory method defines a method which is used for creating objects instead of direct constructor call.  
+Often combined with singleton and object pool patterns.
+
+**Implementation:**  
+• Specified in an interface or protocol and implemented by child classes  
+• Or either implemented in a base class and optionally overridden by derived classes  
+
+Ways in execution  
+• Some function within a class will call the the factory method supplying it with all the arguments to select the implementation class desired  
+• The factory method then executes based upon the arguments passed in to create an instance of that desired class  
+• Once an instance of the desired class is created, the factory method returns to the calling component a reference to that newly created object!  
+
+**When to apply the factory method pattern:**  
+• use this when there is a choice to be made between classes that implement a shared protocol or base class  
+• can also work when a calling component can rely on the existence of only 1 single base type
+
+**Example of use case**  
+• There exists several similar objects and they share the same parent class or conform to the same protocol. Example would be if we have a Car class and several other classes(Truck, SportsCar, SUV) that conform to this parent Car class  
+• A decision is to be made on which of these objects to instantiate   
+[Check out the code!](https://github.com/SarinSwift/iOSResearch/blob/master/factoryMethod.playground/Contents.swift)  
