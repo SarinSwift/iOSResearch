@@ -153,14 +153,24 @@ Ways in execution
 
 
 #### Chain of Responsibility
-This design pattern allows a chain of different objects(all inherited from the same class/interface) to pass on the responsibility of executing a piece of logic to another object. So it's like chaining the receiving objects and pass the request along the chain until an object handles it!  
-It consists of a ***source of command objects***, and a ***series of processing objects***. Each processing object contains has logic that defines the types of command objects it can handle. So if that certain command object isn't in the processing object, then it will be passed on to the next processing object in the chain.
+This design pattern allows a chain of different objects(all inherited from the same class/interface) to pass on the responsibility of executing a piece of logic to another object. So it's like chaining the receiving objects and pass the request along the chain until an object handles it! Note that every UIResponder has a method called `next()` which this method returns the next responder in the responder chain, or `nil` if there's no next responder object.      
+It consists of a ***source of command objects***, and a ***series of processing objects***. Each processing object contains has logic that defines the types of command objects it can handle. So if that certain command object isn't in the processing object, then it will be passed on to the next processing object in the chain.  
+You can generally say the idea behind this design pattern is to decouple senders and receivers by giving multiple objects the ability to handle a request. And the object that made the request will have no explicit knowledge of who will handle it (so the request has an ***implicit receiver***).
 
 **When to apply the chain of responsibility pattern:**  
-• use this pattern when you have a group of related objects handling similar events, but varies depending on event types/attributes/user choices/user inputs/etc.
+• use this pattern when you have a group of related objects handling similar events, but varies depending on event types/attributes/user choices/user inputs/etc.  
+• when you want to issue a specific request to one of many objects without specifying the receiver explicitly  
+• this design pattern is often applied in conjunction with the Composite design pattern. Where a component's parent can act as its successor.
 
 **Example of use case**  
 • The Cocoa and Cocoa Touch frameworks actively use the chain of responsibility pattern for handling events! Objects in the chain are called ***Responder Objects***, inheriting from the UIResponder class.  
 Examples of responder objects: UIView, UIViewController, UIWindow, UIApplication.  
 When a view receives an event that it can't handle, it dispatches it to its superview until it reaches the view controller or window object(UIWindow). If the window can't handle the event, the event will finally dispatch to the application object(UIApplication) which is the ***last object in the chain***.  
-Since a view controller lies in the responder chain, after all of it's managed subviews, it can intercept any view events and handle them. It's typical to handle view events in the view controller.
+Since a view controller lies in the responder chain, after all of it's managed subviews, it can intercept any view events and handle them. It's typical to handle view events in the view controller.  
+
+**Benefits and Liability**  
+• reduced coupling. An object only has to know that the request will be handled appropriately. The receiver and the sender have no explicit knowledge of each other, furthermore, the objects in the chain wouldn't need to know about the chain's structure.  
+• simplifies object interconnections. So, instead of all objects having references to all receivers, they keep a single reference to their successors(which means the next object in the chain).  
+• adds flexibility to assigning responsibilities among objects. You can add or change responsibilities of handling a request by modifying the chain at runtime.  
+• there's no guarantee that the request will be handled(the request can fall off the end of the chain).  
+• a request can also go unhandled if the chain is not properly configured.
