@@ -150,3 +150,17 @@ Ways in execution
 • There exists several similar objects and they share the same parent class or conform to the same protocol. Example would be if we have a Car class and several other classes(Truck, SportsCar, SUV) that conform to this parent Car class  
 • A decision is to be made on which of these objects to instantiate   
 [Check out the code!](https://github.com/SarinSwift/iOSResearch/blob/master/factoryMethod.playground/Contents.swift)  
+
+
+#### Chain of Responsibility
+This design pattern allows a chain of different objects(all inherited from the same class/interface) to pass on the responsibility of executing a piece of logic to another object. So it's like chaining the receiving objects and pass the request along the chain until an object handles it!  
+It consists of a ***source of command objects***, and a ***series of processing objects***. Each processing object contains has logic that defines the types of command objects it can handle. So if that certain command object isn't in the processing object, then it will be passed on to the next processing object in the chain.
+
+**When to apply the chain of responsibility pattern:**  
+• use this pattern when you have a group of related objects handling similar events, but varies depending on event types/attributes/user choices/user inputs/etc.
+
+**Example of use case**  
+• The Cocoa and Cocoa Touch frameworks actively use the chain of responsibility pattern for handling events! Objects in the chain are called ***Responder Objects***, inheriting from the UIResponder class.  
+Examples of responder objects: UIView, UIViewController, UIWindow, UIApplication.  
+When a view receives an event that it can't handle, it dispatches it to its superview until it reaches the view controller or window object(UIWindow). If the window can't handle the event, the event will finally dispatch to the application object(UIApplication) which is the ***last object in the chain***.  
+Since a view controller lies in the responder chain, after all of it's managed subviews, it can intercept any view events and handle them. It's typical to handle view events in the view controller.
