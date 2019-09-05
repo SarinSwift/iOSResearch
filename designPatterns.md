@@ -206,4 +206,28 @@ Is a behavioral pattern that allows grouping related algorithms under an abstrac
 • strategy eliminates conditional statements. becasue when different bahaviors are lumped in to 1 class, it's hard to avoid using conditionals to select the right behaviour. Encapsulating the bahaviour in separate strategy classes eliminated these conditional statements.  
 • it provides different implementations of the same behavior.  
 • clients must understand the different strategies before implementing one. That means that you should use this pattern only when the variation in bahavior is relevant the the clients  
-• increased number of objects. Sometimes you can reduce this overhead by implementing strategies as stateless objects that contexts can share.
+• increased number of objects. Sometimes you can reduce this overhead by implementing strategies as stateless objects that contexts can share.  
+
+
+#### Observer
+Is a one to many relationship between objects, meaning when one object changes state, all its dependants are notified and updated automatically.  
+The key patterns in this relationship is the ***subject*** and the ***observer***. Where a subject can have any number of dependent observers. Every one of the observers will get notified if the subject has a change in state. It is also known as publish-subscribe, where the publisher is the subject. It send out notifications without having to know who its observers are
+
+**When to apply the observer pattern:**  
+• when an abstraction has 2 parts: one dependent on the other. Encapsulating aspects in separate objects lets you reuse them independently.  
+• when a change to one object requires changes to other objects and you don't know how many objects need to be changed.  
+• when an object needs to be able to notify other objects without making assumptions of who these objects are - don't want these objects tightly coupled.
+
+**Benefits and Liability**  
+• abstracts coupling between subjects and observers. Subjects only know the list of observers each conforming to the interface of the abstract observer class   
+• supports broadcast communication. Notifications are broadcasts automatically to all objects subscribed to it. And it's up to the observer to handle the notification or ignore it  
+• may cause unexpected updates. a harmless operation on the subject may cause a whole line of changes to all its observers and their dependent objects.  
+
+**Use cases**  
+• mapping subjects to their observers. One space trading solution is to use a hash table to maintain the subject-to-observer map   
+• observing more than one subject. for example, a spreadsheet might depend on more than one data source. So it would be neccessary to extend the update interface to let the observer know which subject is sending the notification. This can be done by letting the subject pass itself in a parameter in the Update operation, this lets the observer know which subject to examine.  
+• deleting a subject shouldn't produce dangling references on its observers. One waty to make sure this is to notify its observers as it's deleted. But in general, deleting observers is not an option, because other objects may reference them, or they may be observing other subjects as well.  
+• make sure subject state is self consistent. This is because observers query the subject for its current state in the course of updating their own state.  
+• you can extend the subjects' registration interface to allow registering observers only for specific events of interest. So when an event occurs, the subject will inform only those observers that have registered interest in that event.    
+• encapsulate complex update semantics. When there's a complex relationship between si=ubjects and observers, a ChangeManager might be required. ChangeManager objects maintain these relationships.  
+• combining the subject and observer classes. That lets you define an object that acts both a subject and an observer without multiple inheritance.
